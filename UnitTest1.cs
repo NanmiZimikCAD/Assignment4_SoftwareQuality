@@ -192,7 +192,19 @@ namespace InsuranceTests
         private void SubmitForm(bool shouldScroll)
         {
             driver.FindElement(By.Id("btnSubmit")).Click();
-	    thread.sleep(1000);
+	
+	if (shouldScroll==true)
+            {
+                IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
+                Thread.Sleep(1500);
+            }
+            else
+            {
+                IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight*0.3);");
+                Thread.Sleep(1500);
+            }
         }
 
         private void AssertQuoteIsPopulated()
